@@ -347,7 +347,7 @@
   .pv-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
   .pv-label { color: var(--text); }
   .pv-val { color: var(--accent); }
-
+  
   /* ── Contact ── */
   #contact {
     padding: 100px 60px;
@@ -425,6 +425,49 @@
     .stat { border-right: none; border-bottom: 1px solid var(--border); }
     footer { flex-direction: column; gap: 12px; text-align: center; }
   }
+
+  /* ── Hamburger Menu ── */
+  .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--accent);
+    cursor: pointer;
+  }
+
+  /* Icon animation */
+  .menu-toggle span {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .menu-toggle:hover span {
+    transform: scale(1.2);
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 6px;
+      display: none;
+      min-width: 180px;
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+  }
 </style>
 </head>
 <body>
@@ -436,10 +479,17 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">AKS</div>
-  <div class="nav-links">
+  
+    <!-- NEW: Hamburger -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span>☰</span>
+  </div>
+  
+  <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -686,6 +736,67 @@
   </div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div style="max-width:1100px; margin:0 auto; padding:100px 60px;">
+    
+    <div class="section-label">// certifications</div>
+    <h2 class="section-title">My Certifications</h2>
+
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:40px;">
+
+      <!-- Certificate 1 -->
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <h3 class="project-title">Paytm Money Workshop</h3>
+        <p class="project-desc">Participated in a fintech-focused workshop conducted during E-Summit IIT Roorkee, gaining insights into investment platforms, digital finance, and real-world financial decision-making.</p>
+        <a href="https://certificate.givemycertificate.com/c/7f73fb34-35ad-456c-8682-f961659da09c" target="_blank" class="btn btn-outline">View Certificate →</a>
+      </div>
+
+      <!-- Certificate 2 -->
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <h3 class="project-title">Digital Marketing Workshop</h3>
+        <p class="project-desc">Attended a digital marketing workshop at IIT Roorkee covering SEO, social media strategies, and data-driven marketing approaches used in modern businesses.</p>
+        <a href="https://certificate.givemycertificate.com/c/98fd9df4-45fc-4a0a-818f-c3a14e025124" target="_blank" class="btn btn-outline">View Certificate →</a>
+      </div>
+
+      <!-- Certificate 3 -->
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <h3 class="project-title">Content Creation Workshop</h3>
+        <p class="project-desc">Learned content creation strategies from industry experts at FilterCopy, focusing on storytelling, audience engagement, and digital media trends.</p>
+        <a href="https://certificate.givemycertificate.com/c/6614831c-c3d4-4c87-a4be-e3d69e733510" target="_blank" class="btn btn-outline">View Certificate →</a>
+      </div>
+
+      <!-- Certificate 4 -->
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <h3 class="project-title">Python for Data Analysis</h3>
+        <p class="project-desc">Completed training in Python for data analysis using Pandas and NumPy, focusing on data cleaning, transformation, and exploratory data analysis.</p>
+        <a href="https://simpli-web.app.link/e/1TZDU7Cu71b" target="_blank" class="btn btn-outline">View Certificate →</a>
+      </div>
+
+      <!-- Certificate 5 -->
+      <div class="project-card">
+        <div class="project-num">05</div>
+        <h3 class="project-title">Introduction to SQL</h3>
+        <p class="project-desc">Gained foundational knowledge of SQL including data retrieval, filtering, joins, and aggregation techniques for business data analysis.</p>
+        <a href="https://simpli-web.app.link/e/dbL6MyMx71b" target="_blank" class="btn btn-outline">View Certificate →</a>
+      </div>
+
+      <!-- Certificate 6 -->
+      <div class="project-card">
+        <div class="project-num">06</div>
+        <h3 class="project-title">Power BI Data Modelling</h3>
+        <p class="project-desc">Learned Power BI data modeling concepts including relationships, DAX basics, and building interactive dashboards for business insights.</p>
+        <a href="https://simpli-web.app.link/e/hzZDAqJx71b" target="_blank" class="btn btn-outline">View Certificate →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner reveal">
@@ -762,5 +873,16 @@
     });
 
     obs.observe(el);
+  });
+  
+  function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    nav.classList.toggle("active");
+  }
+  
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById("navLinks").classList.remove("active");
+    });
   });
 </script>
